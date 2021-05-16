@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace VozvedenieVStepen2
+namespace HomeWork.Lession1
 {
     public class VosvedenieVStepen
     {
-        static double Getpow(double n, double p)
+        public static double Getpow(double n, double p)
         {
             return Math.Exp(Math.Log(n) * p);
         }
