@@ -12,7 +12,7 @@ namespace HomeWork.Lession2
             {
                 Console.Write("Введите текст :");
                 string text = Console.ReadLine();
-                Console.WriteLine("Выберите число где 1-Шифрование и 2-Дешифрование)");
+                Console.WriteLine("Выберите число где 1-Шифрование и 2-Дешифрование");
                 var oper = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Введите ключ");
                 int key = Convert.ToInt32(Console.ReadLine());
@@ -20,17 +20,54 @@ namespace HomeWork.Lession2
                 if (oper == 1)
                 {
                     Console.WriteLine(Encrypt(text, key));
+                    Console.WriteLine();
                 }
                 else
                 {
                     Console.WriteLine(Decrypt(text, key));
+                    Console.WriteLine();
                 }
             }
         }
 
         public static string Decrypt(string text, int key) // Дешифровка
         {
-            return text;
+            int startLowerChar = 'a';
+            int endLowerChar = 'z';
+            int startUpperChar = 'A';
+            int endUpperChar = 'Z';
+
+            char[] buffer = new char[text.Length];
+
+            for (int i = 0; i < text.Length; i++)
+            {
+                int symbol = text[i];
+                if (text[i] == ' ') symbol = ' ';
+                else
+                {
+                    if (text[i] == text.ToUpper()[i])
+                    {
+                        symbol = symbol - key;
+
+                        if (symbol < startUpperChar)
+                        {
+                            symbol = endUpperChar + (symbol - startUpperChar) + 1;
+                        }
+                    }
+                    else
+                    {
+                        symbol = symbol - key;
+                        if (symbol < startLowerChar)
+                        {
+                            // a [10] x [28] z [30]   x + 5 = 33
+                            // 10 + (33 - 30)
+                            symbol = endLowerChar + (symbol - startLowerChar) + 1;
+                        }
+                    }
+                    buffer[i] = (char)symbol;
+                }
+            }
+            return new string(buffer);
         }
 
         public static string Encrypt(string text, int key) // Шифрование
@@ -78,7 +115,6 @@ namespace HomeWork.Lession2
                         buffer[i] = (char)symbol;
                 }
             }
-
             return new string(buffer);
         }
         
