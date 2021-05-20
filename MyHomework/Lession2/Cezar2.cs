@@ -59,8 +59,6 @@ namespace HomeWork.Lession2
                         symbol = symbol - key;
                         if (symbol < startLowerChar)
                         {
-                            // a [10] x [28] z [30]   x + 5 = 33
-                            // 10 + (33 - 30)
                             symbol = endLowerChar + (symbol - startLowerChar) + 1;
                         }
                     }

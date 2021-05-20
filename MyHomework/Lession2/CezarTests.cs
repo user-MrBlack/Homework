@@ -12,14 +12,18 @@ namespace HomeWork.Lession2
         [TestCase("b", 1, "c")]
         [TestCase("aaaaa", 1, "bbbbb")]
         [TestCase("zzzza", 2, "bbbbc")]
-        [TestCase("a a", 1, "b b")]
-        [TestCase("aAa", 1, "bBb")]
-        [TestCase("aZz", 1, "bAa")]
-        [TestCase("aA A", 1, "bB B")]
-        [TestCase("a ZZz", 1, "b AAa")]
+        [TestCase("aa aa", 1, "bb bb")]
         public void EncryptTests(string text, int key, string result)
         {
             Assert.AreEqual(Cezar2.Encrypt(text, key), result);
+        }
+        [TestCase("a", 1, "z")]
+        [TestCase("z", 2, "x")]
+        [TestCase("aaB", 2, "yyZ")]
+        [TestCase("a a", 1, "z z")]
+        public void DecryptTests(string text, int key, string result)
+        {
+            Assert.AreEqual(Cezar2.Decrypt(text, key), result);
         }
     }
 }
