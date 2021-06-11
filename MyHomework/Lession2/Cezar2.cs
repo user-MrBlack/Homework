@@ -10,6 +10,10 @@ namespace HomeWork.Lession2
         {
             for (; ; )
             {
+                // > "HI"
+                //Console.WriteLine("\\\"Строка\\\"\0");
+                // \"Строка\"
+
                 Console.Write("Введите текст :");
                 string text = Console.ReadLine();
                 Console.WriteLine("Выберите число где 1-Шифрование и 2-Дешифрование");
@@ -42,28 +46,24 @@ namespace HomeWork.Lession2
             for (int i = 0; i < text.Length; i++)
             {
                 int symbol = text[i];
-                if (text[i] == ' ') symbol = ' ';
-                else
+                if (symbol != ' ')
                 {
-                    if (text[i] == text.ToUpper()[i])
+                    // [a-z][A-Z][ ]
+                    int endChar = endLowerChar, startChar = startLowerChar; 
+                    if(char.IsUpper(text[i]))
                     {
-                        symbol = symbol - key;
+                        endChar = endUpperChar;
+                        startChar = startUpperChar;
+                    }
 
-                        if (symbol < startUpperChar)
-                        {
-                            symbol = endUpperChar + (symbol - startUpperChar) + 1;
-                        }
-                    }
-                    else
+                    symbol -= key;
+                    if (symbol < startChar)
                     {
-                        symbol = symbol - key;
-                        if (symbol < startLowerChar)
-                        {
-                            symbol = endLowerChar + (symbol - startLowerChar) + 1;
-                        }
+                        symbol = endChar + (symbol - startChar) + 1;
                     }
-                    buffer[i] = (char)symbol;
                 }
+
+                buffer[i] = (char)symbol;
             }
             return new string(buffer);
         }
@@ -88,33 +88,46 @@ namespace HomeWork.Lession2
             for (int i = 0; i < text.Length; i++)
             {
                 int symbol = text[i];
-                if (text[i] == ' ') symbol = ' ';
-                else
-                {
-                    if (text[i] == text.ToUpper()[i])
+                if (symbol != ' ')
                     {
-                        symbol = symbol + key;
+                        int endChar = endLowerChar, startChar = startLowerChar;
+                    if (char.IsUpper(text[i]))
+                    {
+                        endChar = endUpperChar;
+                        startChar = startUpperChar;
+                    }
 
-                        if (symbol > endUpperChar)
-                        {
-                            symbol = startUpperChar + (symbol - endUpperChar) - 1;
-                        }
-                    }
-                    else
+                    symbol += key;
+                    if (symbol > endChar)
                     {
-                        symbol = symbol + key;
-                        if (symbol > endLowerChar)
-                        {
-                            // a [10] x [28] z [30]   x + 5 = 33
-                            // 10 + (33 - 30)
-                            symbol = startLowerChar + (symbol - endLowerChar) - 1;
-                        }
+                        symbol = startChar + (symbol - endChar) - 1;
                     }
-                        buffer[i] = (char)symbol;
-                }
+            }
+                buffer[i] = (char)symbol;
             }
             return new string(buffer);
         }
         
     }
 }
+//       "Old metod Encrypt"
+//if (text[i] == text.ToUpper()[i])
+//{
+//    symbol = symbol + key;
+//
+//    if (symbol > endUpperChar)
+//    {
+//        symbol = startUpperChar + (symbol - endUpperChar) - 1;
+//    }
+//}
+//else
+//{
+//    symbol = symbol + key;
+//    if (symbol > endLowerChar)
+//    {
+//        // a [10] x [28] z [30]   x + 5 = 33
+//        // 10 + (33 - 30)
+//        symbol = startLowerChar + (symbol - endLowerChar) - 1;
+//    }
+//}
+//    buffer[i] = (char)symbol;
