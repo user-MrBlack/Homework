@@ -20,10 +20,6 @@ namespace HomeWork.Lession2
                 var oper = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Введите ключ");
                 int key = Convert.ToInt32(Console.ReadLine());
-                if (key>=26)
-                {
-                    key = key % 26;
-                }
                 if (oper == 1)
                 {
                     Console.WriteLine(Encrypt(text, key));
@@ -40,6 +36,11 @@ namespace HomeWork.Lession2
         public static string Decrypt(string text, int key) // Дешифровка
         {
             char[] buffer = new char[text.Length];
+
+            if (key >= 26)
+            {
+                key = key % 26;
+            }
 
             for (int i = 0; i < text.Length; i++)
             {
@@ -69,7 +70,12 @@ namespace HomeWork.Lession2
         public static string Encrypt(string text, int key) // Шифрование
         {  
             char[] buffer = new char[text.Length];
-            
+
+            if (key >= 26)
+            {
+                key = key % 26;
+            }
+
             for (int i = 0; i < text.Length; i++)
             {
                 int symbol = text[i];
@@ -96,24 +102,3 @@ namespace HomeWork.Lession2
         
     }
 }
-            //       "Old metod Encrypt"
-            //if (text[i] == text.ToUpper()[i])
-            //{
-            //    symbol = symbol + key;
-            //
-            //    if (symbol > endUpperChar)
-            //    {
-            //        symbol = startUpperChar + (symbol - endUpperChar) - 1;
-            //    }
-            //}
-            //else
-            //{
-            //    symbol = symbol + key;
-            //    if (symbol > endLowerChar)
-            //    {
-            //        // a [10] x [28] z [30]   x + 5 = 33
-            //        // 10 + (33 - 30)
-            //        symbol = startLowerChar + (symbol - endLowerChar) - 1;
-            //    }
-            //}
-            //    buffer[i] = (char)symbol;
