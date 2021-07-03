@@ -6,10 +6,10 @@ namespace HomeWork.Lession2
 {
     public class Cezar2
     {
-        public static int startLowerChar = 'a';
-        public static int endLowerChar = 'z';
-        public static int startUpperChar = 'A';
-        public static int endUpperChar = 'Z';
+        public const int startLowerChar = 'a';
+        public const int endLowerChar = 'z';
+        public const int startUpperChar = 'A';
+        public const int endUpperChar = 'Z';
         public static void Run()
         {
             for (; ; )
